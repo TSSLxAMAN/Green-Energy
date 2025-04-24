@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import BoltIcon from '@mui/icons-material/Bolt';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import panelOptions from '../data/panels';
 
-const LumsumCard = ({
+const LumsumCard = memo(({
     dailyEnergyReq,
     solarPanelSize,
     backupLoad,
@@ -173,6 +173,6 @@ const LumsumCard = ({
             </div>
         </div>
     );
-};
+});
 
 export default LumsumCard;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useMemo, memo } from 'react';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import BoltIcon from '@mui/icons-material/Bolt';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
@@ -9,7 +9,7 @@ import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 
 import panelOptions from '../data/panels';
 
-const ManualCard = ({
+const ManualCard = memo(({
     dailyEnergyReqManual,
     solarPanelSizeManual,
     backupLoadManual,
@@ -174,6 +174,6 @@ const ManualCard = ({
             </div>
         </div>
     );
-};
+});
 
 export default ManualCard;

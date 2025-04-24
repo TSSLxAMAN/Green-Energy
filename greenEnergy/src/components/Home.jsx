@@ -65,7 +65,7 @@ const Home = () => {
 
   const calculateReqManual = () => {
     const isAnyFieldEmpty = Object.values(ManualReq).some(
-      (value) => value === "" || value === null || value === undefined || value === NaN
+      (value) => value === ""
     );
     if (isAnyFieldEmpty) {
       toast.warn("Enter values")

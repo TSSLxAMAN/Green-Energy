@@ -174,11 +174,13 @@ export default function ParallaxCarousel() {
                             style={{
                                 transform: index === activeIndex ? `translateX(${parallaxOffset}px)` : 'none'
                             }}
+                            
                         >
                             <img
                                 src={slide.imageUrl}
                                 alt={slide.title}
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                         </div>
 
