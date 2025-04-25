@@ -165,6 +165,13 @@ const LumsumCard = memo(({
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="p-4 border-t border-gray-100">
+                                        <a href={panel.buyLink} target='_blank'>
+                                            <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium py-2 rounded-lg transition duration-150">
+                                                Buy Now
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             ))}
                         </div>

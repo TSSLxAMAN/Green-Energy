@@ -1,4 +1,4 @@
-import React, { useState,useMemo, memo } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import BoltIcon from '@mui/icons-material/Bolt';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
@@ -20,7 +20,7 @@ const ManualCard = memo(({
     const [showRecs, setShowRecs] = useState(false);
     const [hasGenerated, setHasGenerated] = useState(false);
     dailySavingManual = dailySavingManual * 30
-    
+
     const handleToggleRecommendations = () => {
         if (!hasGenerated) {
             const results = panelOptions.map(panel => {
@@ -165,6 +165,13 @@ const ManualCard = memo(({
                                                 <span className="font-medium text-emerald-600">{panel.breakEvenMonths} months</span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className="p-4 border-t border-gray-100">
+                                        <a href={panel.buyLink} target='_blank'>
+                                            <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium py-2 rounded-lg transition duration-150">
+                                                Buy Now
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             ))}
