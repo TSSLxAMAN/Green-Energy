@@ -1,1 +1,144 @@
 @import "tailwindcss";
+
+/* =============================================
+   GLOBAL WHITE + GREEN THEME + SUBTLE GRID
+   ============================================= */
+body {
+  background-color: #f7fdf9;
+  background-image:
+    linear-gradient(rgba(5, 150, 105, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(5, 150, 105, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  min-height: 100vh;
+  color: #111827;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =============================================
+   CUSTOM SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f0fdf4; }
+::-webkit-scrollbar-thumb { background: #059669; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #047857; }
+
+/* =============================================
+   GREEN GRADIENT TEXT
+   ============================================= */
+.gradient-text {
+  background: linear-gradient(135deg, #059669 0%, #10b981 60%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   HERO RADIAL GLOW (light green tint)
+   ============================================= */
+.hero-glow {
+  background:
+    radial-gradient(ellipse 75% 65% at 65% 55%, rgba(16, 185, 129, 0.09) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 30%, rgba(5, 150, 105, 0.06) 0%, transparent 60%);
+}
+
+/* =============================================
+   STAT BADGE
+   ============================================= */
+.stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(5, 150, 105, 0.08);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  border-radius: 999px;
+  padding: 5px 16px;
+  font-size: 13px;
+  color: #065f46;
+  font-weight: 500;
+}
+
+/* =============================================
+   FEATURE CARD HOVER
+   ============================================= */
+.feature-card {
+  background: #ffffff;
+  border: 1px solid rgba(5, 150, 105, 0.15);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s ease;
+  cursor: default;
+  box-shadow: 0 1px 8px rgba(5, 150, 105, 0.06);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(5, 150, 105, 0.4);
+  box-shadow: 0 8px 32px rgba(5, 150, 105, 0.12);
+}
+
+/* =============================================
+   CTA BUTTONS
+   ============================================= */
+.btn-primary {
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(5, 150, 105, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #059669;
+  border: 1.5px solid rgba(5, 150, 105, 0.4);
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(5, 150, 105, 0.06);
+  border-color: #059669;
+}
+
+/* =============================================
+   CAROUSEL PROGRESS BAR ANIMATION
+   ============================================= */
+@keyframes slideProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* =============================================
+   CALCULATOR MODE SELECT BUTTON
+   ============================================= */
+.select-mode-btn {
+  background: #f0fdf4;
+  border: 1.5px dashed rgba(5, 150, 105, 0.45);
+  color: #059669;
+  border-radius: 12px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select-mode-btn:hover {
+  background: rgba(5, 150, 105, 0.08);
+  border-color: #059669;
+  transform: scale(1.04);
+}

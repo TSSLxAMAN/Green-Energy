@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, MenuItem, Modal, Stack } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import HistoryIcon from '@mui/icons-material/History';
 import SunnyIcon from '@mui/icons-material/Sunny';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -36,10 +36,10 @@ const ManualSelection = ({ calculateReq, setManualReq, ManualReq }) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    backgroundColor: '#ffffff',
     borderRadius: '8px',
-    boxShadow: 24,
-    p: 4,
+    boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+    padding: '24px',
   };
 
   const appliances = [
@@ -140,13 +140,20 @@ const ManualSelection = ({ calculateReq, setManualReq, ManualReq }) => {
   };
 
   const calculateRequirements = () => {
-    const totalPower = Appliances.reduce((acc, app) => {
+    // Daily energy in Wh (used for panel sizing & savings)
+    const totalEnergy = Appliances.reduce((acc, app) => {
       return acc + (app.qty * app.power * app.usagePerDay);
+    }, 0);
+
+    // Peak load in W (used for backup / battery sizing)
+    const totalPeakLoad = Appliances.reduce((acc, app) => {
+      return acc + (app.qty * app.power);
     }, 0);
 
     setManualReq({
       ...ManualReq,
-      totalWatt: totalPower,
+      totalWatt: totalEnergy,
+      totalPeakLoad: totalPeakLoad,
       backUp: Backuphrs,
       sunlightAvailable: SunlightAvliable,
       electricityRate: ElectricityUnitRate
@@ -154,7 +161,6 @@ const ManualSelection = ({ calculateReq, setManualReq, ManualReq }) => {
     calculateReq()
   };
 
-  console.log(Appliances);
 
   return (
     <div className='p-2 md:p-4'>
@@ -264,7 +270,7 @@ const ManualSelection = ({ calculateReq, setManualReq, ManualReq }) => {
             required
             autoComplete='off'
             sx={{ '& .MuiInputBase-input': { fontSize: { xs: '0.875rem', md: '1rem' } } }}
-            value={CurrentAppliance.backupHrsNeeded}
+            value={Backuphrs ?? ''}
             onChange={(e) => (setBackuphrs(e.target.value))}
           />
         </div>
@@ -283,7 +289,7 @@ const ManualSelection = ({ calculateReq, setManualReq, ManualReq }) => {
             fullWidth
             size="small"
             sx={{ '& .MuiInputBase-input': { fontSize: { xs: '0.875rem', md: '1rem' } } }}
-            value={CurrentAppliance.sunlightAvliablity}
+            value={SunlightAvliable ?? ''}
             onChange={(e) => (setSunlightAvliable(e.target.value))}
           />
         </div>
@@ -302,7 +308,7 @@ const ManualSelection = ({ calculateReq, setManualReq, ManualReq }) => {
             fullWidth
             size="small"
             sx={{ '& .MuiInputBase-input': { fontSize: { xs: '0.875rem', md: '1rem' } } }}
-            value={CurrentAppliance.electricityUnitRate}
+            value={ElectricityUnitRate ?? ''}
             onChange={(e) => (setElectricityUnitRate(e.target.value))}
           />
         </div>

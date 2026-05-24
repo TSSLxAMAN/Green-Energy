@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary / generated files
+_temp/
+.graphify_python
+.graphify_*.json
+
+# Graphify knowledge graph output
+graphify-out/
+CLAUDE.md

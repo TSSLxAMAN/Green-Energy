@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from './components/Layout';
 import Home from './components/Home';
 import Favrouite from './components/Favrouite';
-import {RouterProvider } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 
 function App() {
   const route = createBrowserRouter([

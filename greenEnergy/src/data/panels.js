@@ -32,7 +32,7 @@ const panelOptions = [
         price_inr: 8500,
         lifespan_years: 20,
         ideal_use: "Budget-friendly installations with ample space",
-        image_url: "https://m.media-amazon.com/images/I/61kqod7P6IL._AC_UL640_FMwebp_QL65_.jpg",
+        image_url: "https://m.media-amazon.com/images/I/71pLHPVdKGL._SL1500_.jpg",
         buyLink: "https://www.amazon.in/WAAREE-Solar-Panel-Polycrystalline-Cells/dp/B0D92DW5T3?crid=AEHVNH0V5A27&dib=eyJ2IjoiMSJ9.k2pKlW9LkffB9LrD-Cqh2AsYFJItfDHNLc_-d44099U.UiulnvPJV6cGAVW-kqlnimMt0FP_OxB-k-MUkY8VnrI&dib_tag=se&keywords=Waaree%2B330W%2BPolycrystalline&qid=1745568493&s=garden&sprefix=waaree%2B330w%2Bpolycrystalline%2Clawngarden%2C262&sr=1-1&th=1&linkCode=ll1&tag=greensolarene-21&linkId=c8f7717d31fe153f9f3fd2c32d3bdcec&language=en_IN&ref_=as_li_ss_tl"
     },
     {

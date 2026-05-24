@@ -1,4 +1,6 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, memo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavourite, removeFavourite } from '../features/favrouiteSlice';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import BoltIcon from '@mui/icons-material/Bolt';
 import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
@@ -15,6 +17,9 @@ const LumsumCard = memo(({
     batteryAh,
     dailySaving,
 }) => {
+    const dispatch = useDispatch();
+    const favourites = useSelector((state) => state.favourite.items);
+
     const [recommendedPanels, setRecommendedPanels] = useState([]);
     const [showRecs, setShowRecs] = useState(false);
     const [hasGenerated, setHasGenerated] = useState(false);
@@ -36,7 +41,12 @@ const LumsumCard = memo(({
                 };
             });
 
-            const sorted = results.sort((a, b) => a.breakEvenMonths - b.breakEvenMonths);
+            const sorted = results.sort((a, b) => {
+                if (a.breakEvenMonths === '∞' && b.breakEvenMonths === '∞') return 0;
+                if (a.breakEvenMonths === '∞') return 1;
+                if (b.breakEvenMonths === '∞') return -1;
+                return a.breakEvenMonths - b.breakEvenMonths;
+            });
             setRecommendedPanels(sorted.slice(0, 3));
             setHasGenerated(true);
         }
@@ -62,7 +72,7 @@ const LumsumCard = memo(({
                 <div className="bg-emerald-600 rounded-xl p-5 flex items-center space-x-4">
                     <SolarPowerIcon fontSize="large" />
                     <div>
-                        <p className="text-sm font-medium">Solar Panel Size for 1 hr</p>
+                        <p className="text-sm font-medium">Solar System Capacity Needed</p>
                         <p className="text-xl font-bold">{solarPanelSize.toFixed(2)} W</p>
                     </div>
                 </div>
@@ -165,12 +175,27 @@ const LumsumCard = memo(({
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="p-4 border-t border-gray-100">
-                                        <a href={panel.buyLink} target='_blank'>
+                                    <div className="p-4 border-t border-gray-100 flex flex-col gap-2">
+                                        <a href={panel.buyLink} target='_blank' rel="noreferrer">
                                             <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 font-medium py-2 rounded-lg transition duration-150">
                                                 Buy Now
                                             </button>
                                         </a>
+                                        {favourites.find(f => f.name === panel.name) ? (
+                                            <button
+                                                onClick={() => dispatch(removeFavourite(panel.name))}
+                                                className="w-full bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2 rounded-lg transition duration-150"
+                                            >
+                                                ♥ Remove from Favourites
+                                            </button>
+                                        ) : (
+                                            <button
+                                                onClick={() => dispatch(addFavourite(panel))}
+                                                className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium py-2 rounded-lg transition duration-150"
+                                            >
+                                                ♡ Add to Favourites
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             ))}

@@ -1,24 +1,20 @@
-import React from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
-import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
 
 const Layout = () => {
+  const location = useLocation()
+  const hideHeaderFooter =
+    location.pathname === '/login' || location.pathname === '/register'
+
   return (
-    <>
-      <div className="flex flex-col min-h-screen">
-        {/* Navbar */}
-        <Navbar />
-
-        {/* Main Content */}
-        <main className="flex-1 container mx-auto p-4">
-          <Outlet />
-        </main>
-
-        {/* Footer */}
-        <Footer />
-      </div>
-    </>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      {!hideHeaderFooter && <Navbar />}
+      <main style={{ flex: 1 }}>
+        <Outlet />
+      </main>
+      {!hideHeaderFooter && <Footer />}
+    </div>
   )
 }
 
